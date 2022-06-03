@@ -19,13 +19,7 @@ export class SignupComponent implements OnInit {
     private readonly authService: AuthService,
     private readonly toastr: ToastrService,
     private readonly router: Router
-  ) {
-    this.signupRequestPayload = {
-      email: '',
-      username: '',
-      password: ''
-    }
-  }
+  ) { }
 
   ngOnInit() {
     this.signupForm = new FormGroup({
@@ -33,6 +27,12 @@ export class SignupComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
     });
+
+    this.signupRequestPayload = {
+      email: '',
+      username: '',
+      password: ''
+    }
   }
 
   signup() {
