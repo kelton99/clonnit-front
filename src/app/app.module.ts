@@ -17,7 +17,10 @@ import { HomeComponent } from './home/home.component';
 import { VoteButtonComponent } from './shared/vote-button/vote-button.component';
 import { PostTileComponent } from './shared/post-tile/post-tile.component';
 import { SideBarComponent } from './shared/side-bar/side-bar.component';
-import { SubredditSideBarComponent } from './shared/subreddit-side-bar/subreddit-side-bar.component';
+import { SubclonnitSideBarComponent } from './shared/subclonnit-side-bar/subclonnit-side-bar.component';
+import { CreateSubclonnitComponent } from './subclonnit/create-subclonnit/create-subclonnit.component';
+import { CreatePostComponent } from './post/create-post/create-post.component';
+import { ListSubclonnitsComponent } from './subclonnit/list-subclonnits/list-subclonnits.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +31,10 @@ import { SubredditSideBarComponent } from './shared/subreddit-side-bar/subreddit
     VoteButtonComponent,
     PostTileComponent,
     SideBarComponent,
-    SubredditSideBarComponent
+    SubclonnitSideBarComponent,
+    CreateSubclonnitComponent,
+    CreatePostComponent,
+    ListSubclonnitsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SubredditSideBarComponent } from './subreddit-side-bar.component';
+import { CreateSubclonnitComponent } from './create-subclonnit.component';
 
-describe('SubredditSideBarComponent', () => {
-  let component: SubredditSideBarComponent;
-  let fixture: ComponentFixture<SubredditSideBarComponent>;
+describe('CreateSubclonnitComponent', () => {
+  let component: CreateSubclonnitComponent;
+  let fixture: ComponentFixture<CreateSubclonnitComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SubredditSideBarComponent ]
+      declarations: [ CreateSubclonnitComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SubredditSideBarComponent);
+    fixture = TestBed.createComponent(CreateSubclonnitComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

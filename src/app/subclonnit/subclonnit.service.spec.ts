@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SubredditService } from './subreddit.service';
+import { SubclonnitService } from './subclonnit.service';
 
-describe('SubredditService', () => {
-  let service: SubredditService;
+describe('SubclonnitService', () => {
+  let service: SubclonnitService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SubredditService);
+    service = TestBed.inject(SubclonnitService);
   });
 
   it('should be created', () => {

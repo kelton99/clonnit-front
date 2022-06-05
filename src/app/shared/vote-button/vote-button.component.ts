@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { PostModel } from '../post-model';
 
 @Component({
@@ -8,11 +9,20 @@ import { PostModel } from '../post-model';
 })
 export class VoteButtonComponent implements OnInit {
 
-  @Input() post?: PostModel;
-
-  constructor() { }
+  @Input() post: PostModel;
+  faArrowUp = faArrowUp;
+  faArrowDown = faArrowDown;
+  upvoteColor: string = 'red';
+  downvoteColor: string = 'red';
+  
+  constructor(
+    
+  ) { }
 
   ngOnInit(): void {
   }
 
+  upvotePost() {}
+
+  downvotePost() {}
 }
