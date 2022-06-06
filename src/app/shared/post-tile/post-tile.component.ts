@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class PostTileComponent implements OnInit {
 
-  posts: Array<PostModel> = [];
+  posts: Array<PostModel>;
   faArrowup = faArrowUp;
   faArrowDown = faArrowDown;
   faComments = faComments;

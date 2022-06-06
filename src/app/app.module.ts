@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './auth/login/login.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +21,9 @@ import { SubclonnitSideBarComponent } from './shared/subclonnit-side-bar/subclon
 import { CreateSubclonnitComponent } from './subclonnit/create-subclonnit/create-subclonnit.component';
 import { CreatePostComponent } from './post/create-post/create-post.component';
 import { ListSubclonnitsComponent } from './subclonnit/list-subclonnits/list-subclonnits.component';
+import { TokenInterceptor } from './token-interceptor';
+import { EditorModule } from '@tinymce/tinymce-angular';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,8 +48,15 @@ import { ListSubclonnitsComponent } from './subclonnit/list-subclonnits/list-sub
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     FontAwesomeModule,
+    EditorModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -40,12 +40,9 @@ export class CreateSubclonnitComponent implements OnInit {
   createSubclonnit() {
     this.subclonnitModel.name = this.createSubclonnitForm.get('title')?.value;
     this.subclonnitModel.description = this.createSubclonnitForm.get('description')?.value;
-    this.subclonnitService.createSubclonnit(this.subclonnitModel)
-    .subscribe(data => {
-      this.router.navigateByUrl('/list-subclonnits');
-    }, error => {
-      throwError(error);
+    this.subclonnitService.createSubclonnit(this.subclonnitModel).subscribe({
+      next: () => this.router.navigateByUrl('/list-subclonnits'),
+      error: (e) => throwError(() => e)
     })
   }
-
 }

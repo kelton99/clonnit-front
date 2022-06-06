@@ -15,10 +15,9 @@ export class ListSubclonnitsComponent implements OnInit {
   constructor(private subclonnitService: SubclonnitService) { }
 
   ngOnInit(): void {
-    this.subclonnitService.getAllSubclonnits().subscribe(data => {
-      this.subclonnits = data;
-    }, error => {
-      throwError(error);
+    this.subclonnitService.getAllSubclonnits().subscribe({
+      next: (data) => this.subclonnits = data,
+      error: (e) => throwError(() => new Error(e)),
     });
   }
 
