@@ -12,7 +12,7 @@ export class VoteButtonComponent implements OnInit {
   @Input() post: PostModel;
   faArrowUp = faArrowUp;
   faArrowDown = faArrowDown;
-  upvoteColor: string = 'red';
+  upvoteColor: string = 'green';
   downvoteColor: string = 'red';
   
   constructor(

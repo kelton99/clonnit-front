@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
+import { AuthService } from 'src/app/auth/shared/auth.service';
 import { PostService } from 'src/app/shared/post.service';
 import { SubclonnitModel } from 'src/app/subclonnit/subclonnit-response';
 import { SubclonnitService } from 'src/app/subclonnit/subclonnit.service';
@@ -21,7 +22,8 @@ export class CreatePostComponent implements OnInit {
   constructor(
     private readonly router: Router,
     private readonly postService: PostService,
-    private readonly subclonnitService: SubclonnitService
+    private readonly subclonnitService: SubclonnitService,
+    private readonly authService: AuthService
   ) { 
     this.postPayload = {
       postName: '',
@@ -32,6 +34,10 @@ export class CreatePostComponent implements OnInit {
   }
 
   ngOnInit(): void { 
+
+    if(!this.authService.getJwtToken())
+      this.router.navigateByUrl('/login')
+
     this.createPostForm = new FormGroup({
       postName: new FormControl('', Validators.required),
       subclonnitName: new FormControl('', Validators.required),
@@ -60,5 +66,4 @@ export class CreatePostComponent implements OnInit {
   discardPost() {
     this.router.navigateByUrl('/');
   }
-
 }

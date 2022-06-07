@@ -16,7 +16,7 @@ export class SubclonnitSideBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.subclonnitService.getAllSubclonnits().subscribe(subclonnits => {
-      if (subclonnits.length >= 4) {
+      if (subclonnits.length >= 3) {
         this.subclonnits = subclonnits.splice(0, 3);
         this.displayViewAll = true;
       } else {
@@ -24,5 +24,4 @@ export class SubclonnitSideBarComponent implements OnInit {
       }
     });
   }
-
 }

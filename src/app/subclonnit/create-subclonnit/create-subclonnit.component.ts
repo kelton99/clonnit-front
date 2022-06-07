@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
+import { AuthService } from 'src/app/auth/shared/auth.service';
 import { SubclonnitModel } from '../subclonnit-response';
 import { SubclonnitService } from '../subclonnit.service';
 
@@ -18,11 +19,16 @@ export class CreateSubclonnitComponent implements OnInit {
   description = new FormControl('');
 
   constructor(
-    private router: Router,
-    private subclonnitService: SubclonnitService
+    private readonly router: Router,
+    private readonly subclonnitService: SubclonnitService,
+    private readonly authService: AuthService
   ) { }
 
   ngOnInit(): void {
+
+    if(!this.authService.getJwtToken())
+      this.router.navigateByUrl('/login')
+
     this.createSubclonnitForm = new FormGroup({
       title: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required)

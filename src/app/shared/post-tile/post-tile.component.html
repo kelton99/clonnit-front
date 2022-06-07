@@ -5,14 +5,16 @@
       <span class="subreddit-info">
         <span class="subreddit-text"><a class="posturl" routerLink="">{{post.subclonnitName}}</a></span>
         <span> . Posted by <a class="username" routerLink="/user/{{post.username}}">{{post.username}}</a></span>
-        <span> . {{post.duration}}</span>
+        <!--
+          <span> . {{post.duration}}</span> 
+        -->
       </span>
       <hr />
       <div class="post-title">
         <a class="postname" href="{{post.url}}">{{post.postName}}</a>
       </div>
       <div>
-        <p class="post-text">{{post.description}}</p>
+        <p class="post-text" [innerHtml]="post.description"></p>
       </div>
       <hr />
       <span>
