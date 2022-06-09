@@ -8,4 +8,6 @@ export interface PostModel {
     subclonnitName: string;
     commentCount: number;
     duration: string;
+    upVote: boolean;
+    downVote: boolean;
 }
