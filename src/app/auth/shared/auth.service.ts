@@ -15,7 +15,7 @@ export class AuthService {
   @Output() username: EventEmitter<string> = new EventEmitter();
 
   refreshTokenPayload = {
-    refreshToken: this.getJwtToken(),
+    refreshToken: this.getRefreshToken(),
     username: this.getUsername()
   }
 
