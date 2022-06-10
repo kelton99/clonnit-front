@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PostModel } from '../shared/post-model';
+import { PostService } from '../shared/post.service';
 
 @Component({
   selector: 'app-home',
@@ -7,8 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  posts: Array<PostModel> = [];
 
-  ngOnInit(): void { }
+  constructor(private readonly postService: PostService) {
+    this.postService.getAllPosts().subscribe({
+      next: (posts) => this.posts = posts
+    });
+  }
+
+  ngOnInit(): void {
+    console.log("Ciclo de vida on init")
+  }
 
 }

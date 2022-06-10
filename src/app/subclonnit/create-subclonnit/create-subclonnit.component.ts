@@ -21,14 +21,9 @@ export class CreateSubclonnitComponent implements OnInit {
   constructor(
     private readonly router: Router,
     private readonly subclonnitService: SubclonnitService,
-    private readonly authService: AuthService
   ) { }
 
   ngOnInit(): void {
-
-    if(!this.authService.getJwtToken())
-      this.router.navigateByUrl('/login')
-
     this.createSubclonnitForm = new FormGroup({
       title: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required)

@@ -23,7 +23,6 @@ export class CreatePostComponent implements OnInit {
     private readonly router: Router,
     private readonly postService: PostService,
     private readonly subclonnitService: SubclonnitService,
-    private readonly authService: AuthService
   ) { 
     this.postPayload = {
       postName: '',
@@ -34,10 +33,6 @@ export class CreatePostComponent implements OnInit {
   }
 
   ngOnInit(): void { 
-
-    if(!this.authService.getJwtToken())
-      this.router.navigateByUrl('/login')
-
     this.createPostForm = new FormGroup({
       postName: new FormControl('', Validators.required),
       subclonnitName: new FormControl('', Validators.required),
