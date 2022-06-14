@@ -6,8 +6,8 @@
   },
   "scripts": {
     "ng": "ng",
-    "heroku-postbuild": "ng build --prod && yarn install -g http-server-spa",
-    "start": "http-server-spa dist/clonnit index.html $PORT",
+    "heroku-postbuild": "ng build --prod && npm install -g http-server-spa",
+    "start": "http-server-spa dist/angular-reddit-clone index.html $PORT",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
