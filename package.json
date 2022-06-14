@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "engines": {
     "node": "18.3.0",
-    "yarn": "8.5.5"
+    "npm": "8.5.5"
   },
   "scripts": {
     "ng": "ng",
