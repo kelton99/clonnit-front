@@ -14,10 +14,10 @@ export class SubclonnitService {
   constructor(private readonly http: HttpClient) { }
 
   getAllSubclonnits(): Observable<Array<SubclonnitModel>> {
-    return this.http.get<Array<SubclonnitModel>>(this.baseUrl + 'api/subclonnit/')
+    return this.http.get<Array<SubclonnitModel>>(this.baseUrl + 'api/subclonnit')
   }
 
   createSubclonnit(subclonnitModel: SubclonnitModel): Observable<SubclonnitModel> {
-    return this.http.post<SubclonnitModel>(this.baseUrl + 'api/subclonnit/', subclonnitModel);
+    return this.http.post<SubclonnitModel>(this.baseUrl + 'api/subclonnit', subclonnitModel);
   }
 }
