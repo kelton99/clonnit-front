@@ -13,7 +13,6 @@ import { LoginRequestPayload } from './login.request.payload';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  loginRequestPayload: LoginRequestPayload;
   registerSuccessMessage: string = '';
   isError: boolean = false;
 
@@ -22,12 +21,7 @@ export class LoginComponent implements OnInit {
     private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router,
     private readonly toastr: ToastrService
-  ) {
-    this.loginRequestPayload = {
-      username: '',
-      password: ''
-    };
-  }
+  ) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -46,10 +40,13 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.loginRequestPayload.username = this.loginForm.get('username')?.value;
-    this.loginRequestPayload.password = this.loginForm.get('password')?.value;
 
-    this.authService.login(this.loginRequestPayload).subscribe({
+    const loginRequest: LoginRequestPayload = {
+      username: this.loginForm.get('username')?.value,
+      password: this.loginForm.get('password')?.value,
+    };
+
+    this.authService.login(loginRequest).subscribe({
       next: () => {
         this.isError = false;
         this.router.navigateByUrl('');

@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
-import { AuthService } from 'src/app/auth/shared/auth.service';
+import { SubclonnitModel } from 'src/app/pages/home/subclonnit/subclonnit-response';
+import { SubclonnitService } from 'src/app/pages/home/subclonnit/subclonnit.service';
 import { PostService } from 'src/app/shared/post.service';
-import { SubclonnitModel } from 'src/app/subclonnit/subclonnit-response';
-import { SubclonnitService } from 'src/app/subclonnit/subclonnit.service';
 import { CreatePostPayload } from './create-post.payload';
 
 @Component({
@@ -16,23 +15,15 @@ import { CreatePostPayload } from './create-post.payload';
 export class CreatePostComponent implements OnInit {
 
   createPostForm: FormGroup;
-  postPayload: CreatePostPayload;
   subclonnits: Array<SubclonnitModel>
 
   constructor(
     private readonly router: Router,
     private readonly postService: PostService,
     private readonly subclonnitService: SubclonnitService,
-  ) { 
-    this.postPayload = {
-      postName: '',
-      url: '',
-      description: '',
-      subclonnitName: ''
-    }
-  }
+  ) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.createPostForm = new FormGroup({
       postName: new FormControl('', Validators.required),
       subclonnitName: new FormControl('', Validators.required),
@@ -47,12 +38,13 @@ export class CreatePostComponent implements OnInit {
   }
 
   createPost() {
-    this.postPayload.postName = this.createPostForm.get('postName')?.value;
-    this.postPayload.subclonnitName = this.createPostForm.get('subclonnitName')?.value;
-    this.postPayload.url = this.createPostForm.get('url')?.value;
-    this.postPayload.description = this.createPostForm.get('description')?.value;
-  
-    this.postService.createPost(this.postPayload).subscribe({
+    const postPayload: CreatePostPayload = {
+      postName: this.createPostForm.get('postName')?.value,
+      subclonnitName: this.createPostForm.get('subclonnitName')?.value,
+      description: this.createPostForm.get('description')?.value,
+    }
+
+    this.postService.createPost(postPayload).subscribe({
       next: () => this.router.navigateByUrl('/'),
       error: (e) => throwError(() => e)
     })

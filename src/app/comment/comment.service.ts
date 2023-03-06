@@ -17,7 +17,7 @@ export class CommentService {
     return this.httpClient.get<CommentPayload[]>(this.baseUrl + 'api/comments/by-post/' + postId);
   }
 
-  postComment(commentPayload: CommentPayload): Observable<any> {
+  postComment(commentPayload: CommentPayload): Observable<CommentPayload> {
     return this.httpClient.post<any>(this.baseUrl + 'api/comments', commentPayload);
   }
 

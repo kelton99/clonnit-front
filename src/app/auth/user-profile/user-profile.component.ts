@@ -22,9 +22,11 @@ export class UserProfileComponent implements OnInit {
     private readonly activatedRoute: ActivatedRoute,
     private readonly postService: PostService,
     private readonly commentService: CommentService
-  ) {
+  ) { }
+
+  ngOnInit(): void {
     this.name = this.activatedRoute.snapshot.params['name'];
-    
+
     this.postService.getAllPostsByUser(this.name).subscribe({
       next: (data) => {
         this.posts = data;
@@ -38,8 +40,5 @@ export class UserProfileComponent implements OnInit {
         this.commentLength = data.length;
       }
     });
-   }
-
-  ngOnInit(): void { }
-
+  }
 }

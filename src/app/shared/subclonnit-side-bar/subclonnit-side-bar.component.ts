@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SubclonnitModel } from 'src/app/subclonnit/subclonnit-response';
-import { SubclonnitService } from 'src/app/subclonnit/subclonnit.service';
+import { SubclonnitModel } from 'src/app/pages/home/subclonnit/subclonnit-response';
+import { SubclonnitService } from 'src/app/pages/home/subclonnit/subclonnit.service';
 
 @Component({
   selector: 'app-subclonnit-side-bar',
@@ -12,7 +12,7 @@ export class SubclonnitSideBarComponent implements OnInit {
   subclonnits: Array<SubclonnitModel>;
   displayViewAll: boolean;
 
-  constructor(private subclonnitService: SubclonnitService) { }
+  constructor(private readonly subclonnitService: SubclonnitService) { }
 
   ngOnInit(): void {
     this.subclonnitService.getAllSubclonnits().subscribe(subclonnits => {

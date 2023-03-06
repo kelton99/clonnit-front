@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PostModel } from '../shared/post-model';
-import { PostService } from '../shared/post.service';
+import { PostModel } from 'src/app/shared/post-model';
+import { PostService } from 'src/app/shared/post.service';
 
 @Component({
   selector: 'app-home',
@@ -17,8 +17,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    console.log("Ciclo de vida on init")
-  }
+  ngOnInit(): void { }
 
 }

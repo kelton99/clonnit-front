@@ -4,11 +4,11 @@ import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { UserProfileComponent } from './auth/user-profile/user-profile.component';
-import { HomeComponent } from './home/home.component';
-import { CreatePostComponent } from './post/create-post/create-post.component';
-import { ViewPostComponent } from './post/view-post/view-post.component';
-import { CreateSubclonnitComponent } from './subclonnit/create-subclonnit/create-subclonnit.component';
-import { ListSubclonnitsComponent } from './subclonnit/list-subclonnits/list-subclonnits.component';
+import { HomeComponent } from './pages/home/home.component';
+import { CreateSubclonnitComponent } from './pages/home/subclonnit/create-subclonnit/create-subclonnit.component';
+import { ListSubclonnitsComponent } from './pages/home/subclonnit/list-subclonnits/list-subclonnits.component';
+import { CreatePostComponent } from './pages/post/create-post/create-post.component';
+import { ViewPostComponent } from './pages/post/view-post/view-post.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },

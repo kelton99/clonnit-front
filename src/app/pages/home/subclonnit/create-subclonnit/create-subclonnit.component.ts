@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
-import { AuthService } from 'src/app/auth/shared/auth.service';
-import { SubclonnitModel } from '../subclonnit-response';
 import { SubclonnitService } from '../subclonnit.service';
 
 @Component({
@@ -14,9 +12,6 @@ import { SubclonnitService } from '../subclonnit.service';
 export class CreateSubclonnitComponent implements OnInit {
 
   createSubclonnitForm: FormGroup;
-  subclonnitModel: SubclonnitModel;
-  title = new FormControl('');
-  description = new FormControl('');
 
   constructor(
     private readonly router: Router,
@@ -28,10 +23,6 @@ export class CreateSubclonnitComponent implements OnInit {
       title: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required)
     });
-    this.subclonnitModel = {
-      name: '',
-      description: ''
-    }
   }
 
   discard() {
@@ -39,9 +30,12 @@ export class CreateSubclonnitComponent implements OnInit {
   }
 
   createSubclonnit() {
-    this.subclonnitModel.name = this.createSubclonnitForm.get('title')?.value;
-    this.subclonnitModel.description = this.createSubclonnitForm.get('description')?.value;
-    this.subclonnitService.createSubclonnit(this.subclonnitModel).subscribe({
+    const subclonnitModel = {
+      name: this.createSubclonnitForm.get('title')?.value,
+      description: this.createSubclonnitForm.get('description')?.value
+    };
+
+    this.subclonnitService.createSubclonnit(subclonnitModel).subscribe({
       next: () => this.router.navigateByUrl('/list-subclonnits'),
       error: (e) => throwError(() => e)
     })

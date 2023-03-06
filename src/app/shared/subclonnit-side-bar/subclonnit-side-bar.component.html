@@ -1,11 +1,11 @@
 <div class="sidebar-view-subreddit">
-    <div style="color: black; font-weight: bold">Browse Subclonnits</div>
+  <div style="color: black; font-weight: bold">Browse Subclonnits</div>
+  <hr />
+  <span *ngFor="let subclonnit of subclonnits">
+    <span class="subreddit-text"><a href="/view-subclonnit/{{subclonnit.id}}">{{subclonnit.name}}</a></span>
     <hr />
-    <span *ngFor="let subclonnit of subclonnits">
-        <span class="subreddit-text"><a href="/view-subclonnit/{{subclonnit.id}}">{{subclonnit.name}}</a></span>
-        <hr />
-    </span>
-    <div style="text-align: center" *ngIf="displayViewAll">
-        <a style="font-weight: bold" routerLink="/list-clonnits">View All</a>
-    </div>
+  </span>
+  <div style="text-align: center" *ngIf="displayViewAll">
+    <a style="font-weight: bold" routerLink="/list-clonnits">View All</a>
+  </div>
 </div>

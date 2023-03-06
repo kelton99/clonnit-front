@@ -12,7 +12,7 @@ export class TokenInterceptor implements HttpInterceptor {
   isTokenRefreshing = false;
   refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject(null);
 
-  constructor(public authService: AuthService) { }
+  constructor(private readonly authService: AuthService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -28,7 +28,7 @@ export class TokenInterceptor implements HttpInterceptor {
           if (error instanceof HttpErrorResponse && (error.status === 403 || error.status === 401)) {
             return this.handleAuthErrors(req, next);
           } else {
-            return throwError(error);
+            throw new Error(error);
           }
         }));
     }

@@ -17,51 +17,49 @@ import { VoteType } from './vote-type';
 export class VoteButtonComponent implements OnInit {
 
   @Input() post: PostModel;
-  votePayload: VotePayload;
   faArrowUp = faArrowUp;
   faArrowDown = faArrowDown;
   upvoteColor: string;
   downvoteColor: string;
   isLoggedIn: boolean;
-  
+
   constructor(
     private readonly voteService: VoteService,
     private readonly authService: AuthService,
     private readonly postService: PostService,
     private readonly toastr: ToastrService
   ) {
-    this.votePayload = {
-      voteType: undefined,
-      postId: undefined
-    }
     this.authService.loggedIn.subscribe({
       next: (data: boolean) => this.isLoggedIn = data
     })
-   }
+  }
 
   ngOnInit(): void {
     this.updateVoteDetails();
   }
 
   upvotePost() {
-    this.votePayload.voteType = VoteType.UPVOTE;
-    this.vote();
+    this.vote(VoteType.UPVOTE);
     this.downvoteColor = '';
   }
 
   downvotePost() {
-    this.votePayload.voteType = VoteType.DOWNVOTE;
-    this.vote();
+    this.vote(VoteType.DOWNVOTE);
     this.upvoteColor = '';
   }
 
-  private vote() {
-    this.votePayload.postId = this.post.id;
-    this.voteService.vote(this.votePayload).subscribe(() => {
-      this.updateVoteDetails();
-    }, error => {
-      this.toastr.error(error.error.message);
-      throwError(error);
+  private vote(voteType: VoteType) {
+    const votePayload: VotePayload = {
+      voteType: voteType,
+      postId: this.post.id
+    }
+
+    this.voteService.vote(votePayload).subscribe({
+      next: () => this.updateVoteDetails(),
+      error: (error) => {
+        this.toastr.error(error.error.message);
+        throw new Error(error);
+      }
     });
   }
 

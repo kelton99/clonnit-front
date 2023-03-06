@@ -12,7 +12,6 @@ import { SignupRequestPayload } from './signup-request.payload';
 })
 export class SignupComponent implements OnInit {
 
-  signupRequestPayload: SignupRequestPayload;
   signupForm: FormGroup;
 
   constructor(
@@ -27,25 +26,22 @@ export class SignupComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
     });
-
-    this.signupRequestPayload = {
-      email: '',
-      username: '',
-      password: ''
-    }
   }
 
   signup() {
-    this.signupRequestPayload.email = this.signupForm.get('email').value;
-    this.signupRequestPayload.username = this.signupForm.get('username').value;
-    this.signupRequestPayload.password = this.signupForm.get('password').value;
+    const signupRequest: SignupRequestPayload = {
+      email: this.signupForm.get('email').value,
+      username: this.signupForm.get('username').value,
+      password: this.signupForm.get('password').value,
+    }
 
-    this.authService.signup(this.signupRequestPayload)
-      .subscribe(() => {
-        this.router.navigate(['/login'],
-          { queryParams: { registered: 'true ' } });
-      }, () => {
-        this.toastr.error('Registration Failed! Please try again');
+    this.authService.signup(signupRequest)
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/login'],
+            { queryParams: { registered: 'true ' } });
+        },
+        error: () => this.toastr.error('Registration Failed! Please try again')
       });
   }
 }

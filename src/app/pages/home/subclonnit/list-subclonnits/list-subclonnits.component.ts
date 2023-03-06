@@ -12,7 +12,7 @@ export class ListSubclonnitsComponent implements OnInit {
 
   subclonnits: Array<SubclonnitModel>;
 
-  constructor(private subclonnitService: SubclonnitService) { }
+  constructor(private readonly subclonnitService: SubclonnitService) { }
 
   ngOnInit(): void {
     this.subclonnitService.getAllSubclonnits().subscribe({
