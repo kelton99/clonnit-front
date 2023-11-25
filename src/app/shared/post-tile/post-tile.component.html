@@ -5,9 +5,7 @@
     <span class="subreddit-info">
       <span class="subreddit-text"><a class="posturl" routerLink="">{{post.subclonnitName}}</a></span>
       <span> . Posted by <a class="username" routerLink="/user/{{post.username}}">{{post.username}}</a></span>
-      <!--
-          <span> . {{post.duration}}</span> 
-        -->
+      <button class="delete float-right" (click)="deletePost(post.id)" [hidden]="!isCurrentUserAuthor(post.username)">Delete</button>
     </span>
     <hr />
     <div class="post-title">

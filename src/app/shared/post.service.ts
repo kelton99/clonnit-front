@@ -29,4 +29,8 @@ export class PostService {
   getAllPostsByUser(name: string): Observable<PostModel[]> {
     return this.httpClient.get<PostModel[]>(this.baseUrl + 'api/posts/clonnitor/' + name);
   }
+
+  deletePostById(id: number): Observable<PostModel> {
+    return this.httpClient.delete<PostModel>(this.baseUrl + 'api/posts/' + id)
+  }
 }

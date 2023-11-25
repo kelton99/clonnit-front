@@ -31,3 +31,18 @@ input.ng-invalid.ng-touched {
   padding: 3px 16px;
   opacity: 1;
 }
+
+.delete {
+  background-color: #e02121;
+  border-color: #e02121;
+  color: aliceblue;
+  fill: #e02121;
+  border: 1px solid;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  opacity: 1;
+}

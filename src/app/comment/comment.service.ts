@@ -24,4 +24,8 @@ export class CommentService {
   getAllCommentsByUser(name: string): Observable<CommentPayload[]> {
     return this.httpClient.get<CommentPayload[]>(this.baseUrl + 'api/comments/by-user/' + name);
   }
+
+  deleteCommentById(id: number): Observable<CommentPayload> {
+    return this.httpClient.delete<CommentPayload>(this.baseUrl + 'api/comments/' + id)
+  }
 }

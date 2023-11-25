@@ -15,12 +15,13 @@
               <a class="username" href="">{{post.username}}</a>
             </span>
           </span>
+            <button class="delete float-right" (click)="deletePost(postId)" [hidden]="!isCurrentUserAuthor(post.username)">Delete</button>
           <hr />
           <a routerLink="post.url" class="post-title">{{post.postName}}</a>
           <div>
             <p class="post-text" [innerHtml]="post.description"></p>
           </div>
-          <div class="post-comment">
+          <div class="post-comment" style="padding-bottom: 3rem;">
             <form [formGroup]="commentForm" (ngSubmit)="postComment()">
               <div class="form-group">
                 <textarea class="form-control" [formControlName]="'text'" placeholder="Your Thoughts?"></textarea>
@@ -28,18 +29,18 @@
               <button type="submit" class="login float-right" [disabled]="!isLoggedIn()">Comment</button>
             </form>
           </div>
-          <div style="margin-top: 60px;" *ngFor="let comment of comments">
+
+          <div style="padding-bottom: 0.2rem;" *ngFor="let comment of comments">
             <div class="comment">
-              <div class="username">
-                <a routerLink="/user/comment.username">{{comment.username}}</a>
-              </div>
+              <a class="username" routerLink="/user/comment.username">{{comment.username}}</a>
+              <button class="delete float-right" (click)="deleteComment(comment.id)" [hidden]="!isCurrentUserAuthor(comment.username)">Delete</button>
               <div>
                 <p>{{comment.duration}}</p>
               </div>
               <b>{{comment.text}}</b>
             </div>
-            <hr />
           </div>
+
         </div>
       </div>
     </div>

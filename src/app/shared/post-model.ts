@@ -4,7 +4,7 @@ export interface PostModel {
   url: string;
   description: string;
   voteCount: number;
-  username: number;
+  username: string;
   subclonnitName: string;
   commentCount: number;
   duration: string;

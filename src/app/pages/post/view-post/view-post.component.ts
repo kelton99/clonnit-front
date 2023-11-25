@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { throwError } from 'rxjs';
 import { AuthService } from 'src/app/auth/shared/auth.service';
 import { CommentPayload } from 'src/app/comment/comment.payload';
@@ -24,7 +25,9 @@ export class ViewPostComponent implements OnInit {
     private readonly postService: PostService,
     private readonly activateRoute: ActivatedRoute,
     private readonly commentService: CommentService,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly router: Router,
+    private readonly toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -52,8 +55,29 @@ export class ViewPostComponent implements OnInit {
     })
   }
 
+  deleteComment(id: number) {
+    this.commentService.deleteCommentById(id).subscribe({
+      next: () => this.comments = this.comments.filter(comment => comment.id !== id),
+      error: (e) => throwError(() => e),
+    })
+  }
+
+  deletePost(id: number) {
+    this.postService.deletePostById(id).subscribe({
+      next: () => {
+        this.router.navigateByUrl('');
+        this.toastr.success('Post Deleted');
+      },
+      error: (e) => throwError(() => e),
+    })
+  }
+
   isLoggedIn() {
     return this.authService.isLoggedIn();
+  }
+
+  isCurrentUserAuthor(author: string) {
+    return author === this.authService.getUsername();
   }
 
   private getPostById() {
