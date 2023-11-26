@@ -1,5 +1,5 @@
 export interface CreatePostPayload {
   postName: string;
-  subclonnitName: string;
+  subclonnitId: string;
   description: string;
 }

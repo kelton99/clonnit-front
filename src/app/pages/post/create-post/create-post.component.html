@@ -11,9 +11,9 @@
 
           <input type="text" class="form-control" [formControlName]="'url'" style="margin-top: 5px" placeholder="URL">
 
-          <select class="form-control" style="margin-top: 10px" [formControlName]="'subclonnitName'">
+          <select class="form-control" style="margin-top: 10px" [formControlName]="'subclonnitId'">
             <option value="" selected disabled>Select Subclonnit</option>
-            <option *ngFor="let subclonnit of subclonnits">{{subclonnit.name}}</option>
+            <option *ngFor="let subclonnit of subclonnits" [value]="subclonnit.id">{{subclonnit.name}}</option>
           </select>
 
           <editor [formControlName]="'description'" [init]="{

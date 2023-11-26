@@ -26,7 +26,7 @@ export class CreatePostComponent implements OnInit {
   ngOnInit(): void {
     this.createPostForm = new FormGroup({
       postName: new FormControl('', Validators.required),
-      subclonnitName: new FormControl('', Validators.required),
+      subclonnitId: new FormControl('', Validators.required),
       url: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required)
     });
@@ -40,7 +40,7 @@ export class CreatePostComponent implements OnInit {
   createPost() {
     const postPayload: CreatePostPayload = {
       postName: this.createPostForm.get('postName')?.value,
-      subclonnitName: this.createPostForm.get('subclonnitName')?.value,
+      subclonnitId: this.createPostForm.get('subclonnitId')?.value,
       description: this.createPostForm.get('description')?.value,
     }
 
